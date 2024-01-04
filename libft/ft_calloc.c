@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 13:30:28 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/04 19:41:39 by iubieta-         ###   ########.fr       */
+/*   Created: 2023/09/18 20:01:29 by iubieta-          #+#    #+#             */
+/*   Updated: 2023/09/22 16:54:47 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GETNEXTLINE_H
-# define GETNEXTLINE_H
+// #include <stdio.h>
+// #include <stdlib.h>
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <limits.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-char	*get_next_line(int fd);
-size_t	ft_linelen(const char *s);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-#endif
+void	*ft_calloc(size_t num, size_t size)
+{
+	unsigned char	*ptr;
+	size_t			i;
+
+	ptr = malloc(num * size);
+	if (!ptr)
+		return (0);
+	i = 0;
+	while (i < num * size)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return (ptr);
+}
+
+/* int main()
+{
+	return (0);
+} */

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 13:30:28 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/04 19:41:39 by iubieta-         ###   ########.fr       */
+/*   Created: 2024/01/04 18:45:06 by iubieta-          #+#    #+#             */
+/*   Updated: 2024/01/04 20:22:12 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GETNEXTLINE_H
-# define GETNEXTLINE_H
+#include <fcntl.h>
+#include <stdio.h>
+#include "/Users/iubieta-/IkerUbieta/repositorios/libft/libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <limits.h>
-# include "libft/libft.h"
-
-char	*get_next_line(int fd);
-size_t	ft_linelen(const char *s);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-#endif
+int main(void)
+{
+	int	file;
+	int	i;
+	char	*rd_buffer;
+	
+	file = open("text.txt", O_RDONLY);
+	printf("%i\n",file);
+	read(file, rd_buffer, 8);
+	printf("%s\n", rd_buffer);
+	printf("%s",ft_substr(rd_buffer, 0, 4));
+}

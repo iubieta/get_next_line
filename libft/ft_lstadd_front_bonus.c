@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 13:30:28 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/04 19:41:39 by iubieta-         ###   ########.fr       */
+/*   Created: 2023/10/14 17:45:40 by iubieta-          #+#    #+#             */
+/*   Updated: 2023/10/20 18:04:53 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GETNEXTLINE_H
-# define GETNEXTLINE_H
+/* #include <stdio.h> */
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <limits.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-char	*get_next_line(int fd);
-size_t	ft_linelen(const char *s);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (!new)
+		return ;
+	if (*lst)
+		new->next = *lst;
+	*lst = new;
+}

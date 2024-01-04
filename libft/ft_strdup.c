@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 13:30:28 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/04 19:41:39 by iubieta-         ###   ########.fr       */
+/*   Created: 2023/09/19 20:15:38 by iubieta-          #+#    #+#             */
+/*   Updated: 2023/10/21 18:46:20 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GETNEXTLINE_H
-# define GETNEXTLINE_H
+/* #include <string.h>
+#include <stdio.h>
+#include <stdlib.h> */
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <limits.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-char	*get_next_line(int fd);
-size_t	ft_linelen(const char *s);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-#endif
+char	*ft_strdup(const char *s)
+{
+	char	*s_copy;
+
+	s_copy = ft_calloc(sizeof(char), ft_strlen(s) + 1);
+	if (!s_copy)
+		return (0);
+	s_copy = ft_memcpy(s_copy, s, ft_strlen(s));
+	return (s_copy);
+}
+
+/* int main()
+{
+	char s[50] = "Hola que tal";
+
+	printf("%s\n",strdup(s));
+	printf("%s\n",ft_strdup(s));
+} */

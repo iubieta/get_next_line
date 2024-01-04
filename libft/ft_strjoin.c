@@ -1,44 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 11:43:45 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/04 18:42:11 by iubieta-         ###   ########.fr       */
+/*   Created: 2023/09/28 18:38:34 by iubieta-          #+#    #+#             */
+/*   Updated: 2023/10/21 18:49:07 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "libft/libft.h"
+/* #include <stdio.h> */
 
-size_t	ft_linelen(const char *s)
-{
-	size_t	count;
-
-	count = 0;
-	while (s[count] != '\n')
-		count++;
-	return (count);
-}
-
-char	*ft_strrchr(const char *s, int c)
-{
-	char	ch;
-	char	*ptr;
-
-	ch = (char)c;
-	ptr = (char *)s;
-	while (*ptr != '\0')
-		ptr++;
-	while (*ptr != ch && ptr != s)
-		ptr--;
-	if (*ptr == ch)
-		return (ptr);
-	else
-		return (0);
-}
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -65,21 +39,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (final_str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+/* int main()
 {
-	char	*substr;
+	char	s1[50]="Hola ";
+	char	s2[50]="mundo";
 
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s))
-		len = ft_strlen(s);
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	substr = malloc((len + 1) * sizeof(char));
-	if (!substr)
-		return (0);
-	ft_strlcpy(substr, &s[start], len + 1);
-	return (substr);
-}
+	printf("%s\n", ft_strjoin(s1, s2));
+} */
