@@ -1,0 +1,34 @@
+Jueves 04/01:
+	
+	SEGUIR con "ft_strrchr": Cambiar retorno (ptr -> i)
+
+Viernes 05/01:
+
+	ALGORITMO:
+
+		1.Hay texto leido?
+			NO: 
+				Start = 0
+				Leer
+
+		2.Hay salto de linea en el texto despues de Start?
+			SI: 
+				End = siguiente \n ()
+			NO: 
+				Ha acabado el texto?
+					SI:
+						End = final del texto
+					NO:
+						Leer
+						REPETIR
+
+		3.Line = texto entre start y End
+		
+		4.Start = end anterior
+		
+		5.RETURN: line
+
+	SEGUIR CON:
+		- Reducir nº de funciones (strdup con strjoin y substr)
+		- Corregir line_len??
+		- Comprobar con flags!!
