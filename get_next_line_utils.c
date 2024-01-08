@@ -6,7 +6,7 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:43:45 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/04 18:42:11 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:30:00 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ size_t	ft_linelen(const char *s)
 	size_t	count;
 
 	count = 0;
-	while (s[count] != '\n')
+	while (s[count] != '\0' &&  s[count] != '\n')
 		count++;
+	if (s[count] == '\n')
+		return (count + 1);
 	return (count);
 }
 

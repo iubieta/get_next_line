@@ -32,3 +32,16 @@ Viernes 05/01:
 		- Reducir nº de funciones (strdup con strjoin y substr)
 		- Corregir line_len??
 		- Comprobar con flags!!
+
+Lunes 08/09:
+
+	CAMBIOS:
+		- Incluir '\0' en line_len para coger caso final tambien
+		- Sacar todas las lineas con line_len
+	
+	DUDAS:
+		- Donde utilizar BUFFER_SIZE ?? read_str o buf ??
+
+	SEGUIR CON:
+		- DUDAS ^
+		- Comprobar con flags!!
