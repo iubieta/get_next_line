@@ -33,7 +33,7 @@ Viernes 05/01:
 		- Corregir line_len??
 		- Comprobar con flags!!
 
-Lunes 08/09:
+Lunes 08/01:
 
 	CAMBIOS:
 		- Incluir '\0' en line_len para coger caso final tambien
@@ -45,3 +45,13 @@ Lunes 08/09:
 	SEGUIR CON:
 		- DUDAS ^
 		- Comprobar con flags!!
+
+Miercoles 10/01:
+
+	CAMBIOS:
+		- Agrupar lectura en una funcion (SIN TERMINAR)
+
+	SEGUIR CON:
+		- Incluir bucle en la funcion de lectura
+		- Extraer el malloc fuera de la funcion
+		- Usar 2 variables al llamar a join para no malloc-ear varias veces la misma

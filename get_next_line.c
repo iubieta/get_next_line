@@ -6,78 +6,60 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:30:09 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/08 19:52:31 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/01/10 20:11:19 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-BUFFER_SIZE = 256;
+int BUFFER_SIZE = 1;
+
+char	*ft_read(int fd, char *text)
+{
+	char	*buf;
+	int		read_ret;
+
+	buf = malloc(BUFFER_SIZE);
+	if (!buf)
+		return (0);
+	read_ret = read(fd, buf, BUFFER_SIZE);
+	if (read_ret < 0)
+		return(0);
+	else
+		text = ft_strjoin(text, buf);
+	return (text);
+}
 
 char	*get_next_line(int fd)
 {
-	char		*buf;
+	// char		*buf;
 	static char	*read_str;
 	char		*line;
 	static int	start;
 	int			line_len;
-	static int	read_ret;
-	
-	//printf("---------------------------------------\n");
-	//printf("START:%i\n", start);
-	
+	int			read_ret;
+
 	//PRIMERA LECTURA:
 	if (!read_str)
 	{
-		read_str = malloc(BUFFER_SIZE * sizeof(char));
-		if (!read_str)
-			return(0);
-		buf = malloc(8);
-		if (!buf)
-			return(0);
-		read_ret = read(fd, buf, 8);
-		if (read_ret < 0)
-			//printf("ERROR\n");
-			return(0);
-		else
-		{
-			read_str = ft_strjoin(read_str, buf);
-			//printf("LEIDO:\n.\n%s\n.\n", buf);
-			//printf("TEXTO:\n.\n%s\n.\n", read_str);
-			free(buf);
-		}
-		start = 0;			
+		read_str = ft_read(fd, read_str);
+		start = 0;
+		read_ret = ft_strlen(&read_str[start]);
 	}
 	
+	//SEGUIR AQUI: Mover bucle dentro de ft_read
 	//LECTURA:
-	while (!(ft_strchr(&read_str[start],'\n') != 0) && read_ret == 8)
+	while ((ft_strrchr(&read_str[start],'\n')) && read_ret == BUFFER_SIZE)
 	{
-		//printf("bucle...\n");
-		buf = malloc(8);
-		if (!buf)
-			return(0);
-		read_ret = read(fd, buf, 8);
-		if (read_ret < 0)
-			//printf("ERROR\n");
-			return (0);
-		else
-		{
-			read_str = ft_strjoin(read_str, buf);
-			//printf("LEIDO:\n.\n%s\n.\n", buf);
-			//printf("TEXTO:\n.\n%s\n.\n", read_str);
-			free(buf);
-		}
+		read_str = ft_read(fd, read_str);
+		read_ret = ft_strlen(&read_str[read_ret]);
 	}
 
 	//SACAR LINEA:
-	//printf("LINEA:\n");
 	line_len = ft_linelen(&read_str[start]);
 	if (line_len < 1)
 		return(0);
-	//printf("%i\n",line_len);
 	line = ft_substr(read_str, start, line_len);
-	//printf("%s",line);
 	start = start + line_len;
-	//printf("START:%i\n",start);
 	return(line);
 }

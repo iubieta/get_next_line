@@ -6,14 +6,14 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:43:45 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/08 19:30:00 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:16:26 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "libft/libft.h"
 
-size_t	ft_linelen(const char *s)
+int	ft_linelen(const char *s)
 {
 	size_t	count;
 
@@ -21,7 +21,7 @@ size_t	ft_linelen(const char *s)
 	while (s[count] != '\0' &&  s[count] != '\n')
 		count++;
 	if (s[count] == '\n')
-		return (count + 1);
+		count++;
 	return (count);
 }
 
