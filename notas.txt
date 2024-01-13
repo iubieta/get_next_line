@@ -55,3 +55,27 @@ Miercoles 10/01:
 		- Incluir bucle en la funcion de lectura
 		- Extraer el malloc fuera de la funcion
 		- Usar 2 variables al llamar a join para no malloc-ear varias veces la misma
+		- Ir eliminando lineas de read_str para quitar var:start y usar solo 1 var statica
+
+Sabado 13/01:
+
+	NUEVO ALGORITMO:
+
+		1.Hay texto leido?
+			NO: Inicializar texto
+			SI: 2.
+
+		2.Leer mientras no haya un salto de linea o se acabe el texto
+
+		3.Line = texto hasta \n o \0
+
+		4.Quitar linea de texto
+
+		5.RETURN: line
+
+	CAMBIOS:
+		- gnl separado en funciones
+		- modificadas funciones de libft para eliminar libft
+
+	SEGUIR CON:
+		- LEAKS: revisar -gnl -substr -join

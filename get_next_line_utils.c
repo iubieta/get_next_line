@@ -6,75 +6,76 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:43:45 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:16:26 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/01/13 17:57:16 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "libft/libft.h"
 
-int	ft_linelen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	count;
 
 	count = 0;
-	while (s[count] != '\0' &&  s[count] != '\n')
-		count++;
-	if (s[count] == '\n')
+	while (s[count] != '\0')
 		count++;
 	return (count);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	char	ch;
-	char	*ptr;
+	char		ch;
+	char		*ptr;
 
 	ch = (char)c;
 	ptr = (char *)s;
-	while (*ptr != '\0')
+	while (*ptr != ch && *ptr != '\0')
 		ptr++;
-	while (*ptr != ch && ptr != s)
-		ptr--;
 	if (*ptr == ch)
 		return (ptr);
 	else
 		return (0);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_join(char *s1, char *s2)
 {
 	char	*final_str;
+	int		i;
+	int		j;
 
 	final_str = NULL;
 	if (!s1 && !s2)
 		return (NULL);
-	else if (s1 && !s2)
-		final_str = ft_strdup(s1);
-	else if (!s1 && s2)
-		final_str = ft_strdup(s2);
 	else if (s1 && s2)
 	{
-		final_str = ft_calloc(sizeof(char), ft_strlen(s1) + ft_strlen(s2) + 1);
+		final_str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 		if (!final_str)
 			return (NULL);
-		final_str = ft_memcpy(final_str, s1, ft_strlen(s1));
-		ft_strlcat(final_str, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
+		i = 0;
+		while (s1[i])
+		{
+			final_str[i] = s1[i];
+			i++;
+		}
+		final_str[i] = '\0';
+		j = 0;
+		while (s2 != NULL && s2[j] != '\0')
+			final_str[i++] = s2[j++];
+		final_str[i] = '\0';
 	}
-	if (!final_str)
-		return (NULL);
-	else
-		return (final_str);
+	return (final_str);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
 	if (start > ft_strlen(s))
-		return (ft_strdup(""));
+		len = 0;
 	if (len > ft_strlen(s))
 		len = ft_strlen(s);
 	if (len > ft_strlen(s) - start)
@@ -82,6 +83,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr = malloc((len + 1) * sizeof(char));
 	if (!substr)
 		return (0);
-	ft_strlcpy(substr, &s[start], len + 1);
+	i = 0;
+	while (s[start + i] && i < len)
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
 	return (substr);
 }

@@ -6,60 +6,70 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:30:09 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/10 20:11:19 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:19:19 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int BUFFER_SIZE = 1;
-
 char	*ft_read(int fd, char *text)
 {
-	char	*buf;
-	int		read_ret;
-
-	buf = malloc(BUFFER_SIZE);
-	if (!buf)
+	int		read_bytes;
+	char	*buffer;
+	
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
 		return (0);
-	read_ret = read(fd, buf, BUFFER_SIZE);
-	if (read_ret < 0)
-		return(0);
-	else
-		text = ft_strjoin(text, buf);
+	read_bytes = BUFFER_SIZE;
+	while (!(ft_strchr(text,'\n')) && read_bytes == BUFFER_SIZE)
+	{
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		buffer[read_bytes] = '\0';
+		if (read_bytes > 0)
+			text = ft_join(text, buffer);
+	}
+	free (buffer);
 	return (text);
+}
+int	ft_linelen(const char *text)
+{
+	size_t	count;
+
+	count = 0;
+	if (!text)
+		return (0);
+	while (text[count] != '\0' &&  text[count] != '\n')
+		count++;
+	if (text[count] == '\n')
+		count++;
+	return (count);
 }
 
 char	*get_next_line(int fd)
 {
-	// char		*buf;
-	static char	*read_str;
+	static char	*text;
 	char		*line;
-	static int	start;
 	int			line_len;
-	int			read_ret;
-
-	//PRIMERA LECTURA:
-	if (!read_str)
-	{
-		read_str = ft_read(fd, read_str);
-		start = 0;
-		read_ret = ft_strlen(&read_str[start]);
-	}
 	
-	//SEGUIR AQUI: Mover bucle dentro de ft_read
-	//LECTURA:
-	while ((ft_strrchr(&read_str[start],'\n')) && read_ret == BUFFER_SIZE)
+	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 	{
-		read_str = ft_read(fd, read_str);
-		read_ret = ft_strlen(&read_str[read_ret]);
+		if (text)
+		{
+			free(text);
+			text = NULL;
+		}
+		return (NULL);
 	}
-
-	//SACAR LINEA:
-	line_len = ft_linelen(&read_str[start]);
-	if (line_len < 1)
-		return(0);
-	line = ft_substr(read_str, start, line_len);
-	start = start + line_len;
-	return(line);
+	if (!text)
+	{
+		text = malloc(sizeof(char));
+		if (!text)
+			return (0);
+		text[0] = '\0';	
+	}
+	text = ft_read(fd, text);
+	line_len = ft_linelen(text);
+	line = ft_substr(text, 0, line_len);
+	text = ft_substr(text, line_len, ft_strlen(text) - line_len);
+	return (line);
 }

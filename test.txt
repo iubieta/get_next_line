@@ -1,9 +1,1 @@
-hola mundo 
-hola
-
-que tal estas \0 ?
-bien
-
-\n
-
-.
+ñ
