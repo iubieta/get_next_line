@@ -79,3 +79,12 @@ Sabado 13/01:
 
 	SEGUIR CON:
 		- LEAKS: revisar -gnl -substr -join
+
+Lunes 29/01:
+
+	ESTADO:
+		Sin fallos de memoria
+
+	CAMBIOS:
+		Liberar memoria de texto con puntero *del
+

@@ -6,7 +6,7 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:30:09 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/13 18:19:19 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:42:41 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*ft_read(int fd, char *text)
 	char	*buffer;
 	
 	buffer = malloc(BUFFER_SIZE + 1);
+	// printf("\nMALLOC: buffer\n");
 	if (!buffer)
 		return (0);
 	read_bytes = BUFFER_SIZE;
@@ -27,8 +28,15 @@ char	*ft_read(int fd, char *text)
 		buffer[read_bytes] = '\0';
 		if (read_bytes > 0)
 			text = ft_join(text, buffer);
+		else
+		{
+			free(text);
+			free(buffer);
+			return (0);
+		}
 	}
 	free (buffer);
+	// printf("\nFREE: buffer\n");
 	return (text);
 }
 int	ft_linelen(const char *text)
@@ -48,6 +56,7 @@ int	ft_linelen(const char *text)
 char	*get_next_line(int fd)
 {
 	static char	*text;
+	char		*del;
 	char		*line;
 	int			line_len;
 	
@@ -68,8 +77,12 @@ char	*get_next_line(int fd)
 		text[0] = '\0';	
 	}
 	text = ft_read(fd, text);
+	if (!text)
+		return (0);
 	line_len = ft_linelen(text);
 	line = ft_substr(text, 0, line_len);
+	del = text;
 	text = ft_substr(text, line_len, ft_strlen(text) - line_len);
+	free(del);
 	return (line);
 }
