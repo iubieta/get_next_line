@@ -6,12 +6,11 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:43:45 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/13 17:57:16 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:46:06 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft/libft.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -50,6 +49,7 @@ char	*ft_join(char *s1, char *s2)
 	else if (s1 && s2)
 	{
 		final_str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+		// printf("\nMALLOC: join\n");
 		if (!final_str)
 			return (NULL);
 		i = 0;
@@ -64,10 +64,12 @@ char	*ft_join(char *s1, char *s2)
 			final_str[i++] = s2[j++];
 		final_str[i] = '\0';
 	}
-	return (final_str);
+	// printf("\nFREE: text\n");
+	//free(s1);
+	return (free(s1), final_str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	i;
@@ -81,6 +83,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	substr = malloc((len + 1) * sizeof(char));
+	// printf("\nMALLOC: substr\n");
 	if (!substr)
 		return (0);
 	i = 0;
