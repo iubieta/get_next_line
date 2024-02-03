@@ -6,7 +6,7 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:30:09 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/29 19:42:41 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/02/03 12:38:17 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,10 @@ char	*ft_read(int fd, char *text)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		buffer[read_bytes] = '\0';
-		if (read_bytes > 0)
+		if (read_bytes >= 0)
 			text = ft_join(text, buffer);
-		else
-		{
-			free(text);
-			free(buffer);
-			return (0);
-		}
+		else	
+			return (free(buffer), NULL);
 	}
 	free (buffer);
 	// printf("\nFREE: buffer\n");
@@ -73,12 +69,12 @@ char	*get_next_line(int fd)
 	{
 		text = malloc(sizeof(char));
 		if (!text)
-			return (0);
+			return (NULL);
 		text[0] = '\0';	
 	}
 	text = ft_read(fd, text);
-	if (!text)
-		return (0);
+	if (text[0] == '\0')
+		return (free(text), NULL);
 	line_len = ft_linelen(text);
 	line = ft_substr(text, 0, line_len);
 	del = text;

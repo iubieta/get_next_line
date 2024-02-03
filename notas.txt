@@ -89,3 +89,16 @@ Lunes 29/01:
 	CAMBIOS:
 		Liberar memoria de texto con puntero *del
 
+	SEGUIR CON:
+		- Devolver null cuando ultima lectura == BUFFER_SIZE
+
+Sabado 03/02:
+
+	CAMBIOS:
+		- Solucionado problema lectura == BUFFER_SIZE
+			- Liberar solo buffer si read_bytes == 0
+			- Devolver NULL y liberar text si text[0] == '\0'
+
+	SEGUIR CON:
+		- KO abort (empty,limits,read_error)
+	
