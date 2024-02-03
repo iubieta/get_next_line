@@ -96,9 +96,8 @@ Sabado 03/02:
 
 	CAMBIOS:
 		- Solucionado problema lectura == BUFFER_SIZE
-			- Liberar solo buffer si read_bytes == 0
+			- Liberar solo buffer si read_bytes > 0
 			- Devolver NULL y liberar text si text[0] == '\0'
 
 	SEGUIR CON:
 		- KO abort (empty,limits,read_error)
-	
