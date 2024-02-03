@@ -98,6 +98,10 @@ Sabado 03/02:
 		- Solucionado problema lectura == BUFFER_SIZE
 			- Liberar solo buffer si read_bytes > 0
 			- Devolver NULL y liberar text si text[0] == '\0'
+		- Solucionado problemas de liberacion de punteros
+			- Asignar los punteros a null despues de liberarlos
 
 	SEGUIR CON:
-		- KO abort (empty,limits,read_error)
+		- Crear una funcion ft_free con la que Asignar un puntero a null cada vez que se libera
+		- Cambiar todos los frees por ft_free
+		- Formatear todo con respecto a norminette

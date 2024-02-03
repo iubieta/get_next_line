@@ -6,7 +6,7 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:30:09 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/02/03 12:38:17 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/02/03 18:29:14 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ char	*ft_read(int fd, char *text)
 		if (read_bytes >= 0)
 			text = ft_join(text, buffer);
 		else	
-			return (free(buffer), NULL);
+			return (free(buffer), buffer = NULL, NULL);
 	}
 	free (buffer);
+	buffer = NULL;
 	// printf("\nFREE: buffer\n");
 	return (text);
 }
@@ -74,11 +75,12 @@ char	*get_next_line(int fd)
 	}
 	text = ft_read(fd, text);
 	if (text[0] == '\0')
-		return (free(text), NULL);
+		return (free(text), text = NULL, NULL);
 	line_len = ft_linelen(text);
 	line = ft_substr(text, 0, line_len);
 	del = text;
 	text = ft_substr(text, line_len, ft_strlen(text) - line_len);
 	free(del);
+	del = NULL;
 	return (line);
 }

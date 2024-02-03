@@ -6,7 +6,7 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:43:45 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/01/29 19:46:06 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/02/03 18:29:41 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ char	*ft_strchr(const char *s, int c)
 
 	ch = (char)c;
 	ptr = (char *)s;
+	if (s == NULL)
+		return(ptr);	
 	while (*ptr != ch && *ptr != '\0')
 		ptr++;
-	if (*ptr == ch)
+	if (*ptr == ch || ch == '\0') 
 		return (ptr);
 	else
 		return (0);
@@ -53,20 +55,20 @@ char	*ft_join(char *s1, char *s2)
 		if (!final_str)
 			return (NULL);
 		i = 0;
-		while (s1[i])
+		while (s1 && s1[i])
 		{
 			final_str[i] = s1[i];
 			i++;
 		}
 		final_str[i] = '\0';
 		j = 0;
-		while (s2 != NULL && s2[j] != '\0')
+		while (s2 && s2[j] != '\0')
 			final_str[i++] = s2[j++];
 		final_str[i] = '\0';
 	}
 	// printf("\nFREE: text\n");
 	//free(s1);
-	return (free(s1), final_str);
+	return (free(s1), s1 = NULL, final_str);
 }
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
