@@ -105,3 +105,12 @@ Sabado 03/02:
 		- Crear una funcion ft_free con la que Asignar un puntero a null cada vez que se libera
 		- Cambiar todos los frees por ft_free
 		- Formatear todo con respecto a norminette
+
+Sabado 10/02:
+
+	CAMBIOS:
+		- Funcion ft_errorscheck creada para ajustar lineas de gnl
+		- Errores de norminette corregidos.
+
+	SEGUIR CON:
+		- Evaluacion!!

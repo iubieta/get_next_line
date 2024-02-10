@@ -6,7 +6,7 @@
 /*   By: iubieta- <iubieta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:43:45 by iubieta-          #+#    #+#             */
-/*   Updated: 2024/02/03 18:29:41 by iubieta-         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:53:58 by iubieta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ char	*ft_strchr(const char *s, int c)
 	ch = (char)c;
 	ptr = (char *)s;
 	if (s == NULL)
-		return(ptr);	
+		return (ptr);
 	while (*ptr != ch && *ptr != '\0')
 		ptr++;
-	if (*ptr == ch || ch == '\0') 
+	if (*ptr == ch || ch == '\0')
 		return (ptr);
 	else
 		return (0);
@@ -51,7 +51,6 @@ char	*ft_join(char *s1, char *s2)
 	else if (s1 && s2)
 	{
 		final_str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-		// printf("\nMALLOC: join\n");
 		if (!final_str)
 			return (NULL);
 		i = 0;
@@ -66,8 +65,6 @@ char	*ft_join(char *s1, char *s2)
 			final_str[i++] = s2[j++];
 		final_str[i] = '\0';
 	}
-	// printf("\nFREE: text\n");
-	//free(s1);
 	return (free(s1), s1 = NULL, final_str);
 }
 
@@ -85,7 +82,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	substr = malloc((len + 1) * sizeof(char));
-	// printf("\nMALLOC: substr\n");
 	if (!substr)
 		return (0);
 	i = 0;
